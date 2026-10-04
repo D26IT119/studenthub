@@ -1,0 +1,14 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; color: #222; background: #f5f5f5; }
+header { background: #0b5d3b; color: white; padding: 15px 25px; }
+.site-name { margin: 0 0 10px; font-size: 24px; }
+nav ul { display: flex; flex-wrap: wrap; gap: 14px; margin: 0; padding: 0; list-style: none; }
+nav a { color: white; text-decoration: none; }
+nav a:hover, nav a[aria-current="page"] { text-decoration: underline; font-weight: bold; }
+main { max-width: 900px; min-height: 70vh; margin: 25px auto; padding: 25px; background: white; }
+h1 { color: #0b5d3b; } h2 { margin-top: 28px; color: #174c36; } p, li { line-height: 1.6; }
+.button { display: inline-block; padding: 10px 15px; background: #0b5d3b; color: white; text-decoration: none; border: 0; cursor: pointer; }
+.button:hover { background: #08442c; }.card { margin: 15px 0; padding: 15px; border: 1px solid #ccc; }
+label { display: block; margin-top: 15px; font-weight: bold; } input, select, textarea { width: 100%; max-width: 500px; margin-top: 5px; padding: 8px; border: 1px solid #aaa; } textarea { min-height: 100px; } button { margin-top: 18px; }
+footer { padding: 15px 25px; text-align: center; color: white; background: #333; }
+@media (max-width: 600px) { main { margin: 0; } nav ul { display: block; } nav li { margin: 8px 0; } }
