@@ -8,36 +8,31 @@
 </head>
 <body>
     <header>
-        <p class="site-name">StudentHub</p>
-        <nav aria-label="Main navigation">
-            <ul>
-                <li><a href="index.html" aria-current="page">Home</a></li><li><a href="about.html">About</a></li><li><a href="register.html">Register</a></li><li><a href="login.html">Login</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="events.html">Events</a></li><li><a href="profile.html">Profile</a></li><li><a href="contact.html">Contact</a></li><li><a href="admin.html">Admin</a></li><li><a href="faq.html">FAQ</a></li><li><a href="feedback.html">Feedback</a></li>
-            </ul>
-        </nav>
+        <div class="header-row">
+            <div class="brand"><img class="brand-logo" src="../images/logo.jpeg" alt="StudentHub logo"><p class="site-name">StudentHub</p></div>
+            <div class="header-actions"><button class="icon-button" type="button" data-theme-toggle aria-label="Switch color theme">☾</button><button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">☰ Menu</button></div>
+        </div>
+        <nav class="site-nav" aria-label="Main navigation"><ul><li><a href="index.html" aria-current="page">Home</a></li><li><a href="about.html">About</a></li><li><a href="register.html">Register</a></li><li><a href="login.html">Login</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="events.html">Events</a></li><li><a href="profile.html">Profile</a></li><li><a href="contact.html">Contact</a></li><li><a href="admin.html">Admin</a></li><li><a href="faq.html">FAQ</a></li><li><a href="feedback.html">Feedback</a></li></ul></nav>
     </header>
+    <section class="announcement" aria-label="Important announcement"><p><strong>Campus alert:</strong> Sports Meet registrations close on October 10.</p><button type="button" data-dismiss-banner aria-label="Dismiss announcement">×</button></section>
     <main>
         <section class="hero">
-            <div class="hero-text">
-                <p class="notice">New: Sports Meet registrations close on October 10.</p>
-                <h1>Your campus life, all in one place.</h1>
-                <p>StudentHub brings your events, student services and important campus updates together in a friendly, easy-to-use portal.</p>
-                <a class="button" href="register.html">Create your account</a>
-            </div>
-            <aside class="hero-box">
-                <h2>Coming up this week</h2>
-                <p><strong>Career Guidance Session</strong><br>October 12 · 2:00 PM</p>
-                <a class="button button--light" href="events.html">Explore events</a>
-            </aside>
+            <div class="hero-text"><h1>Your campus life, all in one place.</h1><p>StudentHub brings your events, student services and important campus updates together in one friendly portal.</p><button class="button" type="button" data-open-modal>Explore StudentHub</button></div>
+            <aside class="hero-box"><h2>Coming up this week</h2><p><strong>Career Guidance Session</strong><br>October 12 · 2:00 PM</p><a class="button button--light" href="events.html">Explore events</a></aside>
         </section>
-        <section class="section">
-            <h2>Everything students need</h2>
-            <div class="grid">
-                <article class="card"><h3>Discover events</h3><p>Find workshops, campus activities and opportunities to connect.</p></article>
-                <article class="card"><h3>Stay organised</h3><p>Check your profile, announcements and upcoming tasks in one view.</p></article>
-                <article class="card"><h3>Get support</h3><p>Reach student services quickly whenever you have a question.</p></article>
+        <section class="section" aria-labelledby="slider-heading">
+            <h2 id="slider-heading">Campus moments</h2>
+            <div class="slider" aria-label="Campus image slider">
+                <article class="slide is-active"><img src="../images/image_main.jpeg" alt="Students collaborating on campus"><div class="slide-content"><h2>Learn together</h2><p>Find people, places and opportunities that help you grow.</p></div></article>
+                <article class="slide"><img src="../images/image1.jpeg" alt="Campus activity"><div class="slide-content"><h2>Take part</h2><p>Explore workshops, activities and events built for students.</p></div></article>
+                <article class="slide"><img src="../images/image2.avif" alt="Student community"><div class="slide-content"><h2>Stay connected</h2><p>Keep important campus information close at hand.</p></div></article>
+                <button class="slider-control prev" type="button" data-slider-prev aria-label="Previous image">‹</button><button class="slider-control next" type="button" data-slider-next aria-label="Next image">›</button>
+                <div class="slider-dots" aria-label="Choose slide"><button class="slider-dot is-active" type="button" aria-label="Show first image"></button><button class="slider-dot" type="button" aria-label="Show second image"></button><button class="slider-dot" type="button" aria-label="Show third image"></button></div>
             </div>
         </section>
+        <section class="section"><h2>Everything students need</h2><div class="grid"><article class="card"><h3>Discover events</h3><p>Find workshops, campus activities and opportunities to connect.</p></article><article class="card"><h3>Stay organised</h3><p>Check your profile, announcements and upcoming tasks in one view.</p></article><article class="card"><h3>Get support</h3><p>Reach student services quickly whenever you have a question.</p></article></div></section>
     </main>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-dialog"><button class="modal-close" type="button" data-close-modal aria-label="Close popup">×</button><h2 id="modal-title">Welcome to StudentHub</h2><p>Use StudentHub to discover campus events, manage your profile and access support when you need it.</p><a class="button" href="register.html">Create account</a></div></div>
     <footer>&copy; 2026 StudentHub</footer>
     <script src="../js/script.js"></script>
 </body>
