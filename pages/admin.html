@@ -1,1 +1,57 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin | StudentHub</title><link rel="stylesheet" href="../css/style.css"></head><body><header><div class="header-row"><div class="brand"><img class="brand-logo" src="../images/logo.jpeg" alt="StudentHub logo"><p class="site-name">StudentHub</p></div><div class="header-actions"><button class="icon-button" type="button" data-theme-toggle aria-label="Switch color theme">☾</button><button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">☰ Menu</button></div></div><nav class="site-nav" aria-label="Main navigation"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="register.html">Register</a></li><li><a href="login.html">Login</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="events.html">Events</a></li><li><a href="profile.html">Profile</a></li><li><a href="contact.html">Contact</a></li><li><a href="admin.html" aria-current="page">Admin</a></li><li><a href="faq.html">FAQ</a></li><li><a href="feedback.html">Feedback</a></li></ul></nav></header><main><h1>Admin Page</h1><p>This page can be used by administrators to manage StudentHub.</p><div class="card"><h2>Students</h2><p>Total registered students: 250</p></div><div class="card"><h2>Events</h2><p>Total upcoming events: 3</p></div></main><footer>&copy; 2026 StudentHub</footer><script src="../js/script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Admin — StudentHub</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body><a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <nav class="nav" aria-label="Primary navigation"><a class="brand" href="index.html"><span
+                    class="brand-mark">S</span>StudentHub</a>
+            <ul class="menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="login.html">Sign out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="main" class="container dashboard">
+        <aside class="sidebar" aria-label="Admin navigation"><a class="active" href="admin.html">Overview</a><a
+                href="#events">Event requests</a><a href="#people">Students</a><a href="#messages">Messages</a></aside>
+        <section class="dashboard-main">
+            <p class="eyebrow">Administration</p>
+            <h1 style="font-size:2.7rem">Campus overview</h1>
+            <div class="overview">
+                <article class="card"><span class="metric">4,286</span>
+                    <p>active student accounts</p>
+                </article>
+                <article class="card"><span class="metric">8</span>
+                    <p>pending event requests</p>
+                </article>
+                <article class="card"><span class="metric">14</span>
+                    <p>unread messages</p>
+                </article>
+            </div>
+            <article class="card list-card" id="events">
+                <h2>Awaiting review</h2>
+                <div class="list-row">
+                    <div><strong>Film Society: Outdoor Screening</strong>
+                        <p>Submitted today · 120 expected attendees</p>
+                    </div><span class="tag">Review</span>
+                </div>
+                <div class="list-row">
+                    <div><strong>Robotics Club: Intro to Arduino</strong>
+                        <p>Submitted yesterday · Learning Lab requested</p>
+                    </div><span class="tag">Review</span>
+                </div>
+            </article>
+        </section>
+    </main>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

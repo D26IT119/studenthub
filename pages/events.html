@@ -1,1 +1,68 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Events | StudentHub</title><link rel="stylesheet" href="../css/style.css"></head><body><header><div class="header-row"><div class="brand"><img class="brand-logo" src="../images/logo.jpeg" alt="StudentHub logo"><p class="site-name">StudentHub</p></div><div class="header-actions"><button class="icon-button" type="button" data-theme-toggle aria-label="Switch color theme">☾</button><button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">☰ Menu</button></div></div><nav class="site-nav" aria-label="Main navigation"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="register.html">Register</a></li><li><a href="login.html">Login</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="events.html" aria-current="page">Events</a></li><li><a href="profile.html">Profile</a></li><li><a href="contact.html">Contact</a></li><li><a href="admin.html">Admin</a></li><li><a href="faq.html">FAQ</a></li><li><a href="feedback.html">Feedback</a></li></ul></nav></header><main><h1>Campus Events</h1><p>Browse upcoming activities for students.</p><section class="grid"><article class="card event"><div class="event-date">OCT<span>12</span></div><div><h2>Career Guidance Session</h2><p>2:00 PM · Seminar Hall</p></div><a class="button" href="register.html">Join</a></article><article class="card event"><div class="event-date">OCT<span>15</span></div><div><h2>Sports Meet</h2><p>9:00 AM · College Ground</p></div><a class="button" href="register.html">Join</a></article><article class="card event"><div class="event-date">OCT<span>20</span></div><div><h2>Photography Workshop</h2><p>3:00 PM · Media Room</p></div><a class="button" href="register.html">Join</a></article></section></main><footer>&copy; 2026 StudentHub</footer><script src="../js/script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Events | StudentHub</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-row">
+            <div class="brand">
+                <img class="brand-logo" src="../images/logo.jpeg" alt="StudentHub logo">
+                <p class="site-name">StudentHub</p>
+            </div>
+            <div class="header-actions">
+                <button class="icon-button" type="button" data-theme-toggle aria-label="Switch color theme">☾</button>
+                <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">☰ Menu</button>
+            </div>
+        </div>
+        <nav class="site-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html" aria-current="page">Events</a></li>
+                <li><a href="students.html">Students</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Campus Events</h1>
+        <p>Events are loaded from <code>Data/events.json</code> via the Fetch API and rendered dynamically.</p>
+
+        <!-- Practical 6 — Search / Filter / Sort toolbar -->
+        <div class="data-toolbar">
+            <input id="event-search" type="search" placeholder="Search title, venue or category…" aria-label="Search events">
+            <select id="event-category" aria-label="Filter by category">
+                <option value="">All categories</option>
+            </select>
+            <select id="event-sort" aria-label="Sort events">
+                <option value="date">Soonest first</option>
+                <option value="title">Title A–Z</option>
+            </select>
+        </div>
+
+        <p id="event-status" class="data-status" role="status">Loading events…</p>
+
+        <section id="event-list" class="grid" aria-live="polite">
+            <div class="card"><p>Loading events…</p></div>
+        </section>
+
+        <div id="event-pagination" class="pagination" aria-label="Event pagination"></div>
+    </main>
+
+    <footer>&copy; 2026 StudentHub</footer>
+    <script src="../js/script.js"></script>
+    <script type="module" src="../js/events-view.js"></script>
+</body>
+</html>

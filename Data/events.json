@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "Career Guidance Session",
+    "date": "2026-10-12",
+    "time": "2:00 PM",
+    "venue": "Seminar Hall",
+    "category": "Career"
+  },
+  {
+    "id": 2,
+    "title": "Sports Meet",
+    "date": "2026-10-15",
+    "time": "9:00 AM",
+    "venue": "College Ground",
+    "category": "Sports"
+  },
+  {
+    "id": 3,
+    "title": "Photography Workshop",
+    "date": "2026-10-20",
+    "time": "3:00 PM",
+    "venue": "Media Room",
+    "category": "Workshop"
+  },
+  {
+    "id": 4,
+    "title": "Coding Hackathon",
+    "date": "2026-10-22",
+    "time": "10:00 AM",
+    "venue": "Innovation Lab",
+    "category": "Technology"
+  },
+  {
+    "id": 5,
+    "title": "Music Club Open Mic",
+    "date": "2026-10-25",
+    "time": "5:00 PM",
+    "venue": "Amphitheatre",
+    "category": "Arts"
+  },
+  {
+    "id": 6,
+    "title": "Resume Review Clinic",
+    "date": "2026-10-28",
+    "time": "11:00 AM",
+    "venue": "Placement Cell",
+    "category": "Career"
+  },
+  {
+    "id": 7,
+    "title": "Inter-college Chess",
+    "date": "2026-11-02",
+    "time": "8:30 AM",
+    "venue": "Indoor Arena",
+    "category": "Sports"
+  },
+  {
+    "id": 8,
+    "title": "Robotics Showcase",
+    "date": "2026-11-05",
+    "time": "1:00 PM",
+    "venue": "Main Auditorium",
+    "category": "Technology"
+  },
+  {
+    "id": 9,
+    "title": "Mental Wellness Talk",
+    "date": "2026-11-08",
+    "time": "12:00 PM",
+    "venue": "Seminar Hall",
+    "category": "Wellness"
+  },
+  {
+    "id": 10,
+    "title": "Design Thinking Lab",
+    "date": "2026-11-12",
+    "time": "2:30 PM",
+    "venue": "Design Studio",
+    "category": "Workshop"
+  },
+  {
+    "id": 11,
+    "title": "Literary Society Meet",
+    "date": "2026-11-15",
+    "time": "4:00 PM",
+    "venue": "Library Lounge",
+    "category": "Arts"
+  },
+  {
+    "id": 12,
+    "title": "Internship Fair",
+    "date": "2026-11-18",
+    "time": "10:00 AM",
+    "venue": "Convention Centre",
+    "category": "Career"
+  },
+  {
+    "id": 13,
+    "title": "Basketball Trials",
+    "date": "2026-11-21",
+    "time": "7:30 AM",
+    "venue": "College Ground",
+    "category": "Sports"
+  },
+  {
+    "id": 14,
+    "title": "App Development Talk",
+    "date": "2026-11-24",
+    "time": "3:30 PM",
+    "venue": "Innovation Lab",
+    "category": "Technology"
+  },
+  {
+    "id": 15,
+    "title": "Green Campus Drive",
+    "date": "2026-11-28",
+    "time": "8:00 AM",
+    "venue": "North Gate",
+    "category": "Community"
+  }
+]

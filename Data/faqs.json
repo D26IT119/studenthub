@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "question": "How do I register?",
+    "answer": "Open the Register page, complete the form and accept the terms."
+  },
+  {
+    "id": 2,
+    "question": "How do I see events?",
+    "answer": "Use the Events page to search, filter and sort all campus activities."
+  },
+  {
+    "id": 3,
+    "question": "Who can use StudentHub?",
+    "answer": "All enrolled students can use StudentHub services."
+  },
+  {
+    "id": 4,
+    "question": "Can I edit my profile?",
+    "answer": "Yes, choose Edit profile from the Profile page."
+  },
+  {
+    "id": 5,
+    "question": "How do I contact support?",
+    "answer": "Send a message through the Contact page."
+  },
+  {
+    "id": 6,
+    "question": "Where are events held?",
+    "answer": "Each event card shows its venue and start time."
+  },
+  {
+    "id": 7,
+    "question": "Can I join an event online?",
+    "answer": "The event listing explains whether online attendance is available."
+  },
+  {
+    "id": 8,
+    "question": "How do I change my theme?",
+    "answer": "Use the moon button in the header to switch themes."
+  },
+  {
+    "id": 9,
+    "question": "Is my theme saved?",
+    "answer": "Yes, the selected theme is saved in your browser."
+  },
+  {
+    "id": 10,
+    "question": "How do I submit feedback?",
+    "answer": "Use the Feedback page and submit your suggestion."
+  },
+  {
+    "id": 11,
+    "question": "Where can I find announcements?",
+    "answer": "The Dashboard displays the latest student announcements."
+  },
+  {
+    "id": 12,
+    "question": "What courses are supported?",
+    "answer": "IT, Computer Science, Data Science, Design and more are supported."
+  },
+  {
+    "id": 13,
+    "question": "How do I search the event list?",
+    "answer": "Type a keyword in the search box and the list updates instantly."
+  },
+  {
+    "id": 14,
+    "question": "Can I filter events?",
+    "answer": "Choose a category to show only matching events."
+  },
+  {
+    "id": 15,
+    "question": "How does pagination work?",
+    "answer": "Use Previous and Next to move through five records at a time."
+  }
+]

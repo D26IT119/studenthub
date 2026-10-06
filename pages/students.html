@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>FAQ | StudentHub</title>
+    <title>Students | StudentHub</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -26,41 +26,53 @@
                 <li><a href="login.html">Login</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="events.html">Events</a></li>
-                <li><a href="students.html">Students</a></li>
+                <li><a href="students.html" aria-current="page">Students</a></li>
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="admin.html">Admin</a></li>
-                <li><a href="faq.html" aria-current="page">FAQ</a></li>
+                <li><a href="faq.html">FAQ</a></li>
                 <li><a href="feedback.html">Feedback</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h1>Frequently Asked Questions</h1>
-        <p>Questions are loaded from <code>Data/faqs.json</code> via the Fetch API. Click a question to reveal its answer.</p>
+        <h1>Student Directory</h1>
+        <p>
+            Profiles are loaded from <code>Data/students.json</code> via the Fetch API and rendered as dynamic cards.
+            Use the toolbar below to search, filter by course or year, and sort the list.
+        </p>
 
-        <!-- Practical 6 — Search + Sort toolbar -->
-        <div class="data-toolbar data-toolbar--2col">
-            <input id="faq-search" type="search" placeholder="Search questions or answers…" aria-label="Search FAQs">
-            <select id="faq-sort" aria-label="Sort questions">
+        <!-- Practical 6 — Search / Filter / Sort toolbar (4 controls) -->
+        <div class="data-toolbar data-toolbar--4col">
+            <input  id="student-search" type="search"  placeholder="Search name, email or course…" aria-label="Search students">
+            <select id="student-course" aria-label="Filter by course">
+                <option value="">All courses</option>
+            </select>
+            <select id="student-year" aria-label="Filter by year">
+                <option value="">All years</option>
+            </select>
+            <select id="student-sort" aria-label="Sort students">
                 <option value="default">Default order</option>
-                <option value="az">Question A–Z</option>
-                <option value="za">Question Z–A</option>
+                <option value="name-az">Name A–Z</option>
+                <option value="name-za">Name Z–A</option>
+                <option value="year-asc">Year ↑</option>
+                <option value="year-desc">Year ↓</option>
             </select>
         </div>
 
-        <p id="faq-status" class="data-status" role="status">Loading FAQs…</p>
+        <p id="student-status" class="data-status" role="status">Loading students…</p>
 
-        <section id="faq-data-list" class="faq-list" aria-live="polite" aria-label="Frequently asked questions">
+        <section id="student-grid" class="student-grid" aria-live="polite" aria-label="Student profiles">
             <div class="card"><p>Loading…</p></div>
         </section>
 
-        <div id="faq-pagination" class="pagination" aria-label="FAQ pagination"></div>
+        <div id="student-pagination" class="pagination" aria-label="Student pagination"></div>
     </main>
 
     <footer>&copy; 2026 StudentHub</footer>
     <script src="../js/script.js"></script>
-    <script type="module" src="../js/faq-view.js"></script>
+    <script type="module" src="../js/students-view.js"></script>
 </body>
 </html>
+
