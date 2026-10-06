@@ -62,7 +62,64 @@ document.addEventListener("DOMContentLoaded", () => {
     dots.forEach((dot, index) => dot.addEventListener("click", () => showSlide(index)));
     if (slides.length > 1) setInterval(() => showSlide(activeSlide + 1), 5000);
 
+    const registrationForm = document.querySelector("#registration-form");
+    if (registrationForm) {
+        const fields = {
+            name: { pattern: /^[A-Za-z]+(?:[ .'-][A-Za-z]+)+$/, message: "Enter your first and last name using letters only." },
+            email: { pattern: /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/, message: "Enter a valid email address." },
+            mobile: { pattern: /^[6-9]\d{9}$/, message: "Enter a valid 10-digit Indian mobile number." }
+        };
+        const setError = (input, message) => {
+            const error = document.querySelector(`#${input.id}-error`);
+            input.classList.toggle("input-error", Boolean(message));
+            input.setAttribute("aria-invalid", Boolean(message));
+            if (error) error.textContent = message || "";
+            return !message;
+        };
+        const validateField = (input) => {
+            const rule = fields[input.name];
+            if (rule) return setError(input, rule.pattern.test(input.value.trim()) ? "" : rule.message);
+            if (input.name === "course" || input.name === "year") return setError(input, input.value ? "" : "Please select an option.");
+            if (input.name === "confirmPassword") return setError(input, input.value === document.querySelector("#password").value ? "" : "Passwords do not match.");
+            if (input.name === "password") {
+                const valid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(input.value);
+                return setError(input, valid ? "" : "Use 8+ characters with uppercase, lowercase, number and symbol.");
+            }
+            return true;
+        };
+        const updateStrength = () => {
+            const password = document.querySelector("#password").value;
+            const score = [password.length >= 8, /[a-z]/.test(password), /[A-Z]/.test(password), /\d/.test(password), /[^A-Za-z0-9]/.test(password)].filter(Boolean).length;
+            const meter = document.querySelector("#password-strength");
+            const label = document.querySelector("#strength-label");
+            const labels = ["", "Very weak", "Weak", "Fair", "Good", "Strong"];
+            if (meter) { meter.value = score; meter.className = `strength-${score}`; }
+            if (label) label.textContent = password ? labels[score] : "Start typing to check strength";
+        };
+        registrationForm.querySelectorAll("input, select").forEach((input) => {
+            input.addEventListener("blur", () => validateField(input));
+            input.addEventListener("input", () => { if (input.name === "password") updateStrength(); if (input.classList.contains("input-error")) validateField(input); });
+        });
+        registrationForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const validInputs = [...registrationForm.querySelectorAll("input:not([type=radio]):not([type=checkbox]), select")].map(validateField);
+            const gender = registrationForm.querySelector("input[name=gender]:checked");
+            const genderError = document.querySelector("#gender-error");
+            genderError.textContent = gender ? "" : "Please select your gender.";
+            const terms = document.querySelector("#terms");
+            const termsError = document.querySelector("#terms-error");
+            termsError.textContent = terms.checked ? "" : "You must accept the terms to continue.";
+            if (validInputs.every(Boolean) && gender && terms.checked) {
+                const message = document.querySelector("#registration-success");
+                message.textContent = "Registration successful! Your StudentHub account is ready.";
+                registrationForm.reset();
+                updateStrength();
+            }
+        });
+    }
+
     document.querySelectorAll("form").forEach((form) => {
+        if (form.id === "registration-form") return;
         form.addEventListener("submit", (event) => {
             event.preventDefault();
             if (!form.checkValidity()) return form.reportValidity();

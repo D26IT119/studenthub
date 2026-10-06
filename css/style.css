@@ -92,3 +92,19 @@ body.dark-theme { --ink: #ebefff; --muted: #bdc7e2; --navy: #e7eaff; --violet: #
 .dark-theme header { background: linear-gradient(115deg, #080e25, #382069 55%, #075f68); }
 @keyframes fade-slide { from { opacity: 0; transform: scale(1.015); } to { opacity: 1; transform: scale(1); } }
 @media (max-width: 680px) { .menu-toggle { display: block; }.site-nav { display: none; }.site-nav.is-open { display: block; margin-top: 14px; }.site-nav ul { display: grid; grid-template-columns: repeat(2, 1fr); }.site-nav a { border-radius: 8px; }.slide, .slide img { min-height: 300px; height: 300px; } }
+
+/* Practical 5 registration validation */
+.registration-form { max-width: 860px; }
+.field-error { min-height: 1.25rem; margin: 5px 0 0; color: #c1274b; font-size: 0.84rem; font-weight: 650; }
+.input-error { border-color: #d3365a !important; box-shadow: 0 0 0 4px rgba(211, 54, 90, 0.12) !important; }
+.input-hint { margin: 5px 0 0; color: var(--muted); font-size: 0.82rem; }
+.radio-group, .terms-row { margin-top: 8px; }
+.radio-group { display: flex; flex-wrap: wrap; gap: 9px 16px; }
+.radio-group label, .terms-row label { display: inline-flex; align-items: center; gap: 7px; margin: 0; font-weight: 500; }
+.radio-group input, .terms-row input { width: auto; margin: 0; accent-color: var(--violet); }
+.password-strength { margin-top: 9px; }
+.password-strength progress { width: 100%; height: 9px; accent-color: #d3365a; }
+.password-strength progress.strength-3 { accent-color: #de911d; }.password-strength progress.strength-4 { accent-color: #339c72; }.password-strength progress.strength-5 { accent-color: #168264; }
+.password-strength span { display: block; margin-top: 4px; color: var(--muted); font-size: 0.84rem; }
+.registration-success { margin: 16px 0 0; padding: 12px 14px; border-radius: 9px; background: #dff7ed; color: #087653; font-weight: 700; }
+.dark-theme .registration-success { background: #163f3b; color: #98f1d1; }

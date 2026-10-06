@@ -1,1 +1,73 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Register | StudentHub</title><link rel="stylesheet" href="../css/style.css"></head><body><header><div class="header-row"><p class="site-name">StudentHub</p><div class="header-actions"><button class="icon-button" type="button" data-theme-toggle aria-label="Switch color theme">☾</button><button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">☰ Menu</button></div></div><nav class="site-nav" aria-label="Main navigation"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="register.html" aria-current="page">Register</a></li><li><a href="login.html">Login</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="events.html">Events</a></li><li><a href="profile.html">Profile</a></li><li><a href="contact.html">Contact</a></li><li><a href="admin.html">Admin</a></li><li><a href="faq.html">FAQ</a></li><li><a href="feedback.html">Feedback</a></li></ul></nav></header><main><h1>Start your StudentHub journey</h1><p>Set up your account to keep up with campus updates and events.</p><form class="form-box"><div class="form-grid"><div><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required></div><div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div><div><label for="course">Course</label><select id="course" name="course"><option>IT</option><option>Computer Science</option><option>Other</option></select></div><div><label for="year">Year</label><select id="year" name="year"><option>1st Year</option><option>2nd Year</option><option>3rd Year</option></select></div><div class="full"><label for="password">Password</label><input id="password" name="password" type="password" minlength="6" required></div></div><button class="button" type="submit">Create account</button></form></main><footer>&copy; 2026 StudentHub</footer><script src="../js/script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Register | StudentHub</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-row"><p class="site-name">StudentHub</p><div class="header-actions"><button class="icon-button" type="button" data-theme-toggle aria-label="Switch color theme">☾</button><button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">☰ Menu</button></div></div>
+        <nav class="site-nav" aria-label="Main navigation"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="register.html" aria-current="page">Register</a></li><li><a href="login.html">Login</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="events.html">Events</a></li><li><a href="profile.html">Profile</a></li><li><a href="contact.html">Contact</a></li><li><a href="admin.html">Admin</a></li><li><a href="faq.html">FAQ</a></li><li><a href="feedback.html">Feedback</a></li></ul></nav>
+    </header>
+    <main>
+        <h1>Create your StudentHub account</h1>
+        <p>Complete the form below. Fields marked with * are required.</p>
+        <form id="registration-form" class="form-box registration-form" novalidate>
+            <div class="form-grid">
+                <div>
+                    <label for="name">Full name *</label>
+                    <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Jash Tanna" aria-describedby="name-error" required>
+                    <p id="name-error" class="field-error" aria-live="polite"></p>
+                </div>
+                <div>
+                    <label for="email">Email address *</label>
+                    <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="email-error" required>
+                    <p id="email-error" class="field-error" aria-live="polite"></p>
+                </div>
+                <div>
+                    <label for="mobile">Mobile number *</label>
+                    <input id="mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" placeholder="10-digit mobile number" aria-describedby="mobile-error" required>
+                    <p id="mobile-error" class="field-error" aria-live="polite"></p>
+                </div>
+                <div>
+                    <label for="course">Course *</label>
+                    <select id="course" name="course" aria-describedby="course-error" required><option value="">Choose your course</option><option value="IT">Information Technology</option><option value="CS">Computer Science</option><option value="Other">Other</option></select>
+                    <p id="course-error" class="field-error" aria-live="polite"></p>
+                </div>
+                <div>
+                    <label for="year">Year *</label>
+                    <select id="year" name="year" aria-describedby="year-error" required><option value="">Choose your year</option><option value="1">1st Year</option><option value="2">2nd Year</option><option value="3">3rd Year</option><option value="4">4th Year</option></select>
+                    <p id="year-error" class="field-error" aria-live="polite"></p>
+                </div>
+                <div>
+                    <label>Gender *</label>
+                    <div class="radio-group" role="radiogroup" aria-describedby="gender-error"><label><input type="radio" name="gender" value="Female"> Female</label><label><input type="radio" name="gender" value="Male"> Male</label><label><input type="radio" name="gender" value="Other"> Other</label></div>
+                    <p id="gender-error" class="field-error" aria-live="polite"></p>
+                </div>
+                <div>
+                    <label for="password">Password *</label>
+                    <input id="password" name="password" type="password" autocomplete="new-password" aria-describedby="password-hint password-error" required>
+                    <p id="password-hint" class="input-hint">Use 8+ characters, including uppercase, lowercase, number and symbol.</p>
+                    <p id="password-error" class="field-error" aria-live="polite"></p>
+                    <div class="password-strength"><progress id="password-strength" max="5" value="0"></progress><span id="strength-label">Start typing to check strength</span></div>
+                </div>
+                <div>
+                    <label for="confirm-password">Confirm password *</label>
+                    <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" aria-describedby="confirm-password-error" required>
+                    <p id="confirm-password-error" class="field-error" aria-live="polite"></p>
+                </div>
+                <div class="full terms-row">
+                    <label><input id="terms" name="terms" type="checkbox"> I accept the StudentHub terms and privacy policy. *</label>
+                    <p id="terms-error" class="field-error" aria-live="polite"></p>
+                </div>
+            </div>
+            <button class="button" type="submit">Create account</button>
+            <p id="registration-success" class="registration-success" role="status" aria-live="polite"></p>
+        </form>
+    </main>
+    <footer>&copy; 2026 StudentHub</footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>
