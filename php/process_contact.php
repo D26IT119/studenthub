@@ -96,3 +96,4 @@ if ($jfh) {
 }
 
 redirect_contact('success');
+
