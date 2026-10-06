@@ -1,0 +1,13 @@
+# StudentHub — Apache / XAMPP configuration
+# Place the studenthub/ folder inside htdocs/ and access via:
+#   http://localhost/studenthub/pages/register_php.html
+
+Options -Indexes
+
+# Allow PHP to write to the Data/ directory
+<Directory "Data">
+    Require all granted
+</Directory>
+
+# Friendly error pages
+ErrorDocument 404 /studenthub/pages/index.html

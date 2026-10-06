@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Register | StudentHub</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-row">
+            <div class="brand">
+                <img class="brand-logo" src="../images/logo.jpeg" alt="StudentHub logo">
+                <p class="site-name">StudentHub</p>
+            </div>
+            <div class="header-actions">
+                <button class="icon-button" type="button" data-theme-toggle aria-label="Switch color theme">☾</button>
+                <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">☰ Menu</button>
+            </div>
+        </div>
+        <nav class="site-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="register_php.html" aria-current="page">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="students.html">Students</a></li>
+                <li><a href="contact_php.html">Contact</a></li>
+                <li><a href="../php/view_registrations.php">Admin</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Create your StudentHub account</h1>
+        <p>Complete the form below. Fields marked <strong>*</strong> are required.
+           Data is processed by <code>php/process_registration.php</code> and stored in
+           <code>Data/registrations.csv</code> and <code>Data/registrations.json</code>.</p>
+
+        <!-- ── Server response banner (shown after redirect) ── -->
+        <div id="server-banner" class="server-banner" role="alert" aria-live="assertive" hidden></div>
+
+        <!--
+            Practical 7 key point:
+            action   → points to the PHP processor
+            method   → POST keeps data out of the URL
+            The client-side JS (script.js) still runs for UX,
+            but PHP is the authoritative validator.
+        -->
+        <form id="registration-form"
+              class="form-box registration-form"
+              action="../php/process_registration.php"
+              method="POST"
+              novalidate>
+
+            <div class="form-grid">
+                <!-- Full name -->
+                <div>
+                    <label for="name">Full name *</label>
+                    <input id="name" name="name" type="text"
+                           autocomplete="name" placeholder="e.g. Jash Tanna"
+                           aria-describedby="name-error" required>
+                    <p id="name-error" class="field-error" aria-live="polite"></p>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email">Email address *</label>
+                    <input id="email" name="email" type="email"
+                           autocomplete="email" placeholder="you@example.com"
+                           aria-describedby="email-error" required>
+                    <p id="email-error" class="field-error" aria-live="polite"></p>
+                </div>
+
+                <!-- Mobile -->
+                <div>
+                    <label for="mobile">Mobile number *</label>
+                    <input id="mobile" name="mobile" type="tel"
+                           inputmode="numeric" autocomplete="tel" maxlength="10"
+                           placeholder="10-digit mobile number"
+                           aria-describedby="mobile-error" required>
+                    <p id="mobile-error" class="field-error" aria-live="polite"></p>
+                </div>
+
+                <!-- Course -->
+                <div>
+                    <label for="course">Course *</label>
+                    <select id="course" name="course"
+                            aria-describedby="course-error" required>
+                        <option value="">Choose your course</option>
+                        <option value="IT">Information Technology</option>
+                        <option value="CS">Computer Science</option>
+                        <option value="DS">Data Science</option>
+                        <option value="Design">Design</option>
+                        <option value="BA">Business Administration</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <p id="course-error" class="field-error" aria-live="polite"></p>
+                </div>
+
+                <!-- Year -->
+                <div>
+                    <label for="year">Year *</label>
+                    <select id="year" name="year"
+                            aria-describedby="year-error" required>
+                        <option value="">Choose your year</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                    </select>
+                    <p id="year-error" class="field-error" aria-live="polite"></p>
+                </div>
+
+                <!-- Gender -->
+                <div>
+                    <label>Gender *</label>
+                    <div class="radio-group" role="radiogroup" aria-describedby="gender-error">
+                        <label><input type="radio" name="gender" value="Female"> Female</label>
+                        <label><input type="radio" name="gender" value="Male">   Male</label>
+                        <label><input type="radio" name="gender" value="Other">  Other</label>
+                    </div>
+                    <p id="gender-error" class="field-error" aria-live="polite"></p>
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label for="password">Password *</label>
+                    <input id="password" name="password" type="password"
+                           autocomplete="new-password"
+                           aria-describedby="password-hint password-error" required>
+                    <p id="password-hint" class="input-hint">
+                        Use 8+ characters, including uppercase, lowercase, number and symbol.
+                    </p>
+                    <p id="password-error" class="field-error" aria-live="polite"></p>
+                    <div class="password-strength">
+                        <progress id="password-strength" max="5" value="0"></progress>
+                        <span id="strength-label">Start typing to check strength</span>
+                    </div>
+                </div>
+
+                <!-- Confirm password -->
+                <div>
+                    <label for="confirm-password">Confirm password *</label>
+                    <input id="confirm-password" name="confirmPassword" type="password"
+                           autocomplete="new-password"
+                           aria-describedby="confirm-password-error" required>
+                    <p id="confirm-password-error" class="field-error" aria-live="polite"></p>
+                </div>
+
+                <!-- Terms -->
+                <div class="full terms-row">
+                    <label>
+                        <input id="terms" name="terms" type="checkbox">
+                        I accept the StudentHub terms and privacy policy. *
+                    </label>
+                    <p id="terms-error" class="field-error" aria-live="polite"></p>
+                </div>
+            </div>
+
+            <button class="button" type="submit">Create account</button>
+            <p id="registration-success" class="registration-success" role="status" aria-live="polite"></p>
+        </form>
+
+        <p style="margin-top:20px">
+            <a href="../php/view_registrations.php" class="button button--light" style="margin:0">
+                View all registrations &rarr;
+            </a>
+        </p>
+    </main>
+
+    <footer>&copy; 2026 StudentHub</footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        /* ── Read ?status= from PHP redirect and show banner ── */
+        (function () {
+            const params  = new URLSearchParams(location.search);
+            const status  = params.get('status');
+            const msg     = params.get('msg');
+            const banner  = document.getElementById('server-banner');
+            if (!status || !banner) return;
+
+            if (status === 'success') {
+                banner.textContent = '✅ Registration successful! Your details have been saved.';
+                banner.classList.add('banner-success');
+            } else {
+                banner.textContent = '❌ ' + (msg || 'An error occurred. Please check your inputs.');
+                banner.classList.add('banner-error');
+            }
+            banner.hidden = false;
+            banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            /* Clean the URL so refresh doesn't re-show the banner */
+            history.replaceState(null, '', location.pathname);
+        })();
+    </script>
+</body>
+</html>

@@ -1024,3 +1024,10 @@ body.dark-theme {
     font-weight: 800;
     vertical-align: middle;
 }
+
+/* ── Practical 7 — PHP server-response banner ── */
+.server-banner { margin: 0 0 20px; padding: 14px 18px; border-radius: 12px; font-weight: 700; font-size: 1rem; }
+.banner-success { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+.banner-error   { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+.dark-theme .banner-success { background: #064e3b; color: #6ee7b7; border-color: #065f46; }
+.dark-theme .banner-error   { background: #450a0a; color: #fca5a5; border-color: #991b1b; }
