@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const footer = document.querySelector("footer");
-    if (footer) footer.innerHTML = `&copy; ${new Date().getFullYear()} StudentHub <span aria-hidden="true">&middot;</span> Your campus, connected`;
+    const year = footer?.querySelector("[data-year]");
+    if (year) year.textContent = new Date().getFullYear();
+    else if (footer) footer.innerHTML = `&copy; ${new Date().getFullYear()} StudentHub <span aria-hidden="true">&middot;</span> Your campus, connected`;
 
     const themeToggle = document.querySelector("[data-theme-toggle]");
     const savedTheme = localStorage.getItem("studenthub-theme");
@@ -54,13 +56,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const showSlide = (index) => {
         if (!slides.length) return;
         activeSlide = (index + slides.length) % slides.length;
-        slides.forEach((slide, i) => slide.classList.toggle("is-active", i === activeSlide));
-        dots.forEach((dot, i) => dot.classList.toggle("is-active", i === activeSlide));
+        slides.forEach((slide, i) => {
+            const active = i === activeSlide;
+            slide.classList.toggle("is-active", active);
+            slide.setAttribute("aria-hidden", String(!active));
+        });
+        dots.forEach((dot, i) => {
+            const active = i === activeSlide;
+            dot.classList.toggle("is-active", active);
+            if (active) dot.setAttribute("aria-current", "true");
+            else dot.removeAttribute("aria-current");
+        });
     };
     document.querySelector("[data-slider-prev]")?.addEventListener("click", () => showSlide(activeSlide - 1));
     document.querySelector("[data-slider-next]")?.addEventListener("click", () => showSlide(activeSlide + 1));
     dots.forEach((dot, index) => dot.addEventListener("click", () => showSlide(index)));
-    if (slides.length > 1) setInterval(() => showSlide(activeSlide + 1), 5000);
+    if (slides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        let sliderTimer = setInterval(() => showSlide(activeSlide + 1), 5000);
+        document.querySelector(".slider")?.addEventListener("mouseenter", () => clearInterval(sliderTimer), { once: true });
+    }
 
     const registrationForm = document.querySelector("#registration-form");
     if (registrationForm) {
@@ -101,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
             input.addEventListener("input", () => { if (input.name === "password") updateStrength(); if (input.classList.contains("input-error")) validateField(input); });
         });
         registrationForm.addEventListener("submit", (event) => {
-            event.preventDefault();
             const validInputs = [...registrationForm.querySelectorAll("input:not([type=radio]):not([type=checkbox]), select")].map(validateField);
             const gender = registrationForm.querySelector("input[name=gender]:checked");
             const genderError = document.querySelector("#gender-error");
@@ -109,12 +122,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const terms = document.querySelector("#terms");
             const termsError = document.querySelector("#terms-error");
             termsError.textContent = terms.checked ? "" : "You must accept the terms to continue.";
-            if (validInputs.every(Boolean) && gender && terms.checked) {
-                const message = document.querySelector("#registration-success");
-                message.textContent = "Registration successful! Your StudentHub account is ready.";
-                registrationForm.reset();
-                updateStrength();
-            }
+            // Let a valid form POST to PHP. PHP performs authoritative validation
+            // and writes the account to the CSV file.
+            if (!validInputs.every(Boolean) || !gender || !terms.checked) event.preventDefault();
         });
     }
 
