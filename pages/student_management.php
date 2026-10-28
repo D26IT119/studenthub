@@ -24,6 +24,13 @@ function p11_statement(mysqli $conn, string $sql, string $types = '', array $par
     return $statement;
 }
 
+function p11_audit(mysqli $conn, string $action): void
+{
+    $statement = p11_statement($conn, 'INSERT INTO audit_logs (user_id, action) VALUES (?, ?)', 'is', [(int) $_SESSION['user_id'], $action]);
+    $statement->execute();
+    $statement->close();
+}
+
 function p11_redirect(array $query = []): never
 {
     $url = 'student_management.php';
@@ -83,6 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $statement = p11_statement($conn, 'INSERT INTO students (name, email, mobile, course_id, year, gender) VALUES (?, ?, ?, ?, ?, ?)', 'sssiis', [$name, $email, $mobile, $courseId, $year, $gender]);
                     $statement->execute();
                     $statement->close();
+                    p11_audit($conn, 'student_created');
                     $_SESSION['student_management_flash'] = ['type' => 'success', 'message' => 'Student added successfully.'];
                     p11_redirect();
                 } else {
@@ -91,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $changed = $statement->affected_rows;
                     $statement->close();
                     if ($changed > 0) {
+                        p11_audit($conn, 'student_updated');
                         $_SESSION['student_management_flash'] = ['type' => 'success', 'message' => 'Student updated successfully.'];
                         p11_redirect();
                     }
@@ -108,6 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $changed = $statement->affected_rows;
                 $statement->close();
                 if ($changed > 0) {
+                    p11_audit($conn, $action === 'archive' ? 'student_archived' : 'student_restored');
                     $_SESSION['student_management_flash'] = ['type' => 'success', 'message' => $action === 'archive' ? 'Student archived successfully. Related registrations were preserved.' : 'Student restored successfully.'];
                     p11_redirect(['status' => $action === 'archive' ? 'active' : 'deleted']);
                 }
