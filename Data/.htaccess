@@ -1,0 +1,3 @@
+<FilesMatch "^registrations\.(csv|json)$">
+    Require all denied
+</FilesMatch>

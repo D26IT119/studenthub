@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS students (
   year TINYINT UNSIGNED NOT NULL,
   gender ENUM('Male', 'Female', 'Other') NOT NULL,
   password_hash VARCHAR(255) DEFAULT NULL,
+  status ENUM('active', 'deleted') NOT NULL DEFAULT 'active',
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE KEY uq_students_email (email),
@@ -108,7 +109,23 @@ INSERT IGNORE INTO students (id, name, email, mobile, course_id, year, gender) V
   (1, 'Jash Tanna', 'jash.tanna@studenthub.edu', '9000000001', 1, 2, 'Male'),
   (2, 'Aarav Shah', 'aarav.shah@studenthub.edu', '9000000002', 2, 3, 'Male'),
   (3, 'Diya Patel', 'diya.patel@studenthub.edu', '9000000003', 1, 1, 'Female'),
-  (4, 'Riya Mehta', 'riya.mehta@studenthub.edu', '9000000004', 4, 2, 'Female');
+  (4, 'Riya Mehta', 'riya.mehta@studenthub.edu', '9000000004', 4, 2, 'Female'),
+  (5, 'Reyansh Mehta', 'reyansh.mehta@studenthub.edu', '9000000005', 2, 1, 'Male'),
+  (6, 'Anaya Desai', 'anaya.desai@studenthub.edu', '9000000006', 3, 2, 'Female'),
+  (7, 'Vivaan Shah', 'vivaan.shah@studenthub.edu', '9000000007', 1, 3, 'Male'),
+  (8, 'Myra Joshi', 'myra.joshi@studenthub.edu', '9000000008', 4, 1, 'Female'),
+  (9, 'Advik Patel', 'advik.patel@studenthub.edu', '9000000009', 2, 4, 'Male'),
+  (10, 'Sara Mehta', 'sara.mehta@studenthub.edu', '9000000010', 3, 3, 'Female'),
+  (11, 'Arjun Shah', 'arjun.shah@studenthub.edu', '9000000011', 1, 2, 'Male'),
+  (12, 'Ira Desai', 'ira.desai@studenthub.edu', '9000000012', 4, 4, 'Female'),
+  (13, 'Kabir Joshi', 'kabir.joshi@studenthub.edu', '9000000013', 2, 2, 'Male'),
+  (14, 'Aadhya Patel', 'aadhya.patel@studenthub.edu', '9000000014', 3, 1, 'Female'),
+  (15, 'Vihaan Mehta', 'vihaan.mehta@studenthub.edu', '9000000015', 1, 4, 'Male'),
+  (16, 'Kiara Shah', 'kiara.shah@studenthub.edu', '9000000016', 4, 3, 'Female'),
+  (17, 'Rudra Desai', 'rudra.desai@studenthub.edu', '9000000017', 2, 1, 'Male'),
+  (18, 'Navya Joshi', 'navya.joshi@studenthub.edu', '9000000018', 3, 4, 'Female'),
+  (19, 'Dhruv Patel', 'dhruv.patel@studenthub.edu', '9000000019', 1, 3, 'Male'),
+  (20, 'Prisha Mehta', 'prisha.mehta@studenthub.edu', '9000000020', 4, 2, 'Female');
 
 INSERT IGNORE INTO events (event_id, title, event_date, location, category) VALUES
   (1, 'Career Guidance Session', '2026-10-12', 'Seminar Hall', 'Career'),
