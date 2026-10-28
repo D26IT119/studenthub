@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.querySelectorAll("form").forEach((form) => {
-        if (form.id === "registration-form") return;
+        if (form.id === "registration-form" || form.id === "secure-registration-form") return;
         form.addEventListener("submit", (event) => {
             event.preventDefault();
             if (!form.checkValidity()) return form.reportValidity();

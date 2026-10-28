@@ -2,7 +2,7 @@
 /**
  * process_registration.php  —  Practical 7
  * ──────────────────────────────────────────────────────────────
- * Handles POST data from register.html / register_php.html.
+ * Handles POST data from register.html / register.php.
  *
  * Steps performed:
  *   1. Accept only POST requests.
@@ -24,7 +24,7 @@ $jsonFile= $root . '/Data/registrations.json';
 
 // Helper: redirect back to the form with a result flag
 function redirect(string $status, string $msg = ''): never {
-    $back = '../pages/register_php.html';
+    $back = '../pages/register.php';
     $qs   = 'status=' . urlencode($status);
     if ($msg) $qs .= '&msg=' . urlencode($msg);
     header("Location: $back?$qs");

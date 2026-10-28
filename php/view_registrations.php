@@ -86,7 +86,7 @@ $tsIdx   = array_search('registered', $headers);
     <nav class="site-nav" aria-label="Main navigation">
         <ul>
             <li><a href="../pages/index.html">Home</a></li>
-            <li><a href="../pages/register_php.html">Register</a></li>
+            <li><a href="../pages/register.php">Register</a></li>
             <li><a href="view_registrations.php" aria-current="page">Registrations</a></li>
             <li><a href="view_contacts.php">Contact Messages</a></li>
         </ul>
@@ -95,7 +95,7 @@ $tsIdx   = array_search('registered', $headers);
 
 <main>
     <div class="admin-wrap">
-        <a class="back-link" href="../pages/register_php.html">&larr; Back to Registration</a>
+        <a class="back-link" href="../pages/register.php">&larr; Back to Registration</a>
 
         <div class="admin-header">
             <h1 style="margin:0">Registration Records</h1>

@@ -7,6 +7,31 @@ CREATE DATABASE IF NOT EXISTS studenthub_practical8
 
 USE studenthub_practical8;
 
+-- Practical 9 account credentials are kept separate from academic profiles.
+CREATE TABLE IF NOT EXISTS users (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name VARCHAR(80) NOT NULL,
+  username VARCHAR(30) NOT NULL,
+  email VARCHAR(150) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  role VARCHAR(20) NOT NULL DEFAULT 'student',
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_users_username (username),
+  UNIQUE KEY uq_users_email (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS audit_logs (
+  log_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id INT UNSIGNED NOT NULL,
+  action VARCHAR(100) NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (log_id),
+  KEY ix_audit_logs_user_id (user_id),
+  CONSTRAINT fk_audit_logs_user FOREIGN KEY (user_id)
+    REFERENCES users (id) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS courses (
   course_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   course_name VARCHAR(100) NOT NULL,
