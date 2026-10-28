@@ -9,13 +9,13 @@ $upcomingEvents = [];
 $dashboardError = false;
 try {
     require __DIR__ . '/../php/db_connect_mysqli.php';
-    $metricsResult = $conn->query("SELECT (SELECT COUNT(*) FROM users) AS accounts, (SELECT COUNT(*) FROM users WHERE role = 'admin') AS admins, (SELECT COUNT(*) FROM users WHERE role = 'student') AS students, (SELECT COUNT(*) FROM students) AS student_profiles, (SELECT COUNT(*) FROM events WHERE event_date >= CURRENT_DATE) AS upcoming_events, (SELECT COUNT(*) FROM registrations) AS registrations");
+    $metricsResult = $conn->query("SELECT (SELECT COUNT(*) FROM users) AS accounts, (SELECT COUNT(*) FROM users WHERE role = 'admin') AS admins, (SELECT COUNT(*) FROM users WHERE role = 'student') AS students, (SELECT COUNT(*) FROM students) AS student_profiles, (SELECT COUNT(*) FROM events WHERE event_date >= CURRENT_DATE AND status = 'open') AS upcoming_events, (SELECT COUNT(*) FROM registrations) AS registrations");
     $metrics = array_map('intval', $metricsResult->fetch_assoc());
     $metricsResult->free();
     $accountsResult = $conn->query('SELECT name, email, role, created_at FROM users ORDER BY created_at DESC LIMIT 5');
     $recentAccounts = $accountsResult->fetch_all(MYSQLI_ASSOC);
     $accountsResult->free();
-    $eventsResult = $conn->query('SELECT title, event_date, location FROM events WHERE event_date >= CURRENT_DATE ORDER BY event_date ASC LIMIT 5');
+    $eventsResult = $conn->query("SELECT title, event_date, location FROM events WHERE event_date >= CURRENT_DATE AND status = 'open' ORDER BY event_date ASC LIMIT 5");
     $upcomingEvents = $eventsResult->fetch_all(MYSQLI_ASSOC);
     $eventsResult->free();
     $conn->close();
@@ -35,7 +35,7 @@ try {
     </style>
 </head>
 <body>
-<header class="site-header"><div class="header-row"><a class="brand" href="index.html"><img class="brand-logo" src="../images/logo.jpeg" alt=""><span class="site-name">StudentHub</span></a><nav class="p10-admin-nav" aria-label="Administrator navigation"><a href="student_management.php">Manage Students</a><a href="../php/view_users.php">Accounts</a><a href="events.html">Events</a><form action="../php/logout.php" method="post"><button type="submit">Sign out</button></form></nav></div></header>
+<header class="site-header"><div class="header-row"><a class="brand" href="index.html"><img class="brand-logo" src="../images/logo.jpeg" alt=""><span class="site-name">StudentHub</span></a><nav class="p10-admin-nav" aria-label="Administrator navigation"><a href="student_management.php">Manage Students</a><a href="../php/view_users.php">Accounts</a><a href="event_management.php">Manage Events</a><a href="events.html">Public Events</a><form action="../php/logout.php" method="post"><button type="submit">Sign out</button></form></nav></div></header>
 <main class="p10-admin"><div class="p10-admin-head"><div><p class="eyebrow">StudentHub · Administration</p><h1>Welcome, <?= auth_e((string) $_SESSION['user_name']) ?>.</h1><p class="p10-admin-muted"><?= auth_e((string) $_SESSION['user_email']) ?></p></div><span class="p10-admin-role">Administrator</span></div>
     <?php if ($dashboardError): ?><p class="p10-admin-error" role="alert">We could not load the admin overview. Check that MySQL is running and the StudentHub database is available.</p><?php endif; ?>
     <section class="p10-admin-stats" aria-label="Database overview"><article class="p10-admin-stat"><strong><?= $metrics['accounts'] ?></strong><span>Accounts · <?= $metrics['admins'] ?> admins, <?= $metrics['students'] ?> students</span></article><article class="p10-admin-stat"><strong><?= $metrics['student_profiles'] ?></strong><span>Student profiles in database · <a href="student_management.php">Manage student records</a></span></article><article class="p10-admin-stat"><strong><?= $metrics['upcoming_events'] ?></strong><span>Upcoming events · <?= $metrics['registrations'] ?> total registrations</span></article></section>

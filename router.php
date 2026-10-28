@@ -6,6 +6,11 @@
 $path = rawurldecode(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/');
 $normalizedPath = str_replace('\\', '/', $path);
 
+if ($normalizedPath === '/') {
+    header('Location: /pages/index.html', true, 302);
+    exit;
+}
+
 // Send the old static dashboard URLs through the session-protected pages.
 $legacyDashboards = [
     '/pages/dashboard.html' => '/pages/student_dashboard.php',

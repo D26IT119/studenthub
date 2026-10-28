@@ -77,8 +77,13 @@ CREATE TABLE IF NOT EXISTS events (
   event_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   title VARCHAR(150) NOT NULL,
   event_date DATE NOT NULL,
+  event_time TIME NOT NULL DEFAULT '09:00:00',
   location VARCHAR(100) NOT NULL,
   category VARCHAR(50) NOT NULL,
+  capacity INT UNSIGNED NOT NULL DEFAULT 100,
+  description TEXT DEFAULT NULL,
+  status ENUM('open', 'closed') NOT NULL DEFAULT 'open',
+  poster_path VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY (event_id),
   UNIQUE KEY uq_events_title_date (title, event_date)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -10,7 +10,7 @@ $registrationCount = 0;
 $dashboardError = false;
 try {
     require __DIR__ . '/../php/db_connect_mysqli.php';
-    $countResult = $conn->query('SELECT COUNT(*) AS total FROM events WHERE event_date >= CURRENT_DATE');
+    $countResult = $conn->query("SELECT COUNT(*) AS total FROM events WHERE event_date >= CURRENT_DATE AND status = 'open'");
     $upcomingCount = (int) $countResult->fetch_assoc()['total'];
     $countResult->free();
 
@@ -29,7 +29,7 @@ try {
         $registrationQuery->close();
     }
 
-    $eventsResult = $conn->query('SELECT title, event_date, location, category FROM events WHERE event_date >= CURRENT_DATE ORDER BY event_date ASC LIMIT 4');
+    $eventsResult = $conn->query("SELECT title, event_date, location, category FROM events WHERE event_date >= CURRENT_DATE AND status = 'open' ORDER BY event_date ASC LIMIT 4");
     $upcomingEvents = $eventsResult->fetch_all(MYSQLI_ASSOC);
     $eventsResult->free();
     $conn->close();

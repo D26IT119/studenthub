@@ -2,6 +2,7 @@
 # Access via: http://localhost/studenthub/pages/register_php.html
 
 Options -Indexes
+DirectoryIndex pages/index.html
 
 # Legacy static dashboard links must use the authenticated PHP endpoints.
 RewriteEngine On
