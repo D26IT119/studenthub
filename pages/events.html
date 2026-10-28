@@ -3,8 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Events | StudentHub</title>
+    <title>Event API Playground | StudentHub</title>
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .p13-wrap{max-width:1180px;margin:34px auto;padding:0 24px 40px}.p13-intro{margin:8px 0 22px;color:var(--muted)}.p13-panel{margin:18px 0;padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:var(--shadow)}.p13-panel h2{margin:0 0 14px}.p13-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px 16px}.p13-field{display:grid;gap:6px;font-weight:650}.p13-field--wide{grid-column:span 2}.p13-field input,.p13-field select,.p13-field textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);font:inherit}.p13-field textarea{min-height:82px;resize:vertical}.p13-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;grid-column:1/-1}.p13-actions .button{margin:0}.p13-secondary{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}.p13-feedback{min-height:1.5em;margin:10px 0;color:var(--muted);font-weight:650}.p13-feedback[data-kind="success"]{color:#166534}.p13-feedback[data-kind="error"]{color:#b42318}.p13-event-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px}.p13-event-actions button{padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}.p13-event-actions .p13-delete{color:#b42318}.p13-signed-out{padding:15px;border-radius:12px;background:rgba(105,65,198,.08)}.p13-signed-out a{font-weight:750}
+        .p13-audit-wrap{overflow-x:auto}.p13-audit-table{width:100%;min-width:620px;border-collapse:collapse}.p13-audit-table th,.p13-audit-table td{padding:11px 13px;border-bottom:1px solid var(--line);text-align:left}.p13-audit-table th{background:rgba(105,65,198,.08);color:var(--navy);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}.p13-audit-table tr:last-child td{border-bottom:0}.p13-audit-empty{color:var(--muted)}
+        @media(max-width:760px){.p13-form{grid-template-columns:repeat(2,minmax(0,1fr))}}
+        @media(max-width:520px){.p13-wrap{padding:0 16px 28px}.p13-form{grid-template-columns:1fr}.p13-field--wide{grid-column:auto}.p13-panel{padding:17px}}
+    </style>
 </head>
 <body>
     <header>
@@ -36,9 +42,29 @@
         </nav>
     </header>
 
-    <main>
-        <h1>Campus Events</h1>
-        <p>Events are loaded from <code>Data/events.json</code> via the Fetch API and rendered dynamically.</p>
+    <main class="p13-wrap">
+        <p class="eyebrow">StudentHub · Practical 13</p>
+        <h1>Event API playground</h1>
+        <p class="p13-intro">Browse campus events from the StudentHub database. Administrators can add, edit, and delete events without reloading this page.</p>
+
+        <p id="event-feedback" class="p13-feedback" role="status" aria-live="polite"></p>
+        <span id="event-management"></span>
+        <section id="event-form-panel" class="p13-panel" aria-labelledby="event-form-heading" hidden>
+            <h2 id="event-form-heading">Add an event</h2>
+            <form id="event-form" class="p13-form">
+                <input id="event-id" name="id" type="hidden">
+                <label class="p13-field">Event title<input id="event-title" name="title" maxlength="150" required></label>
+                <label class="p13-field">Date<input id="event-date" name="date" type="date" required></label>
+                <label class="p13-field">Time<input id="event-time" name="time" type="time" required></label>
+                <label class="p13-field">Venue<input id="event-venue" name="venue" maxlength="100" required></label>
+                <label class="p13-field">Category<input id="event-category-input" name="category" maxlength="50" required></label>
+                <label class="p13-field">Capacity<input id="event-capacity" name="capacity" type="number" min="1" max="100000" value="100" required></label>
+                <label class="p13-field p13-field--wide">Description<textarea id="event-description" name="description" maxlength="5000"></textarea></label>
+                <label class="p13-field">Status<select id="event-record-status" name="status"><option value="open">Open</option><option value="closed">Closed</option></select></label>
+                <div class="p13-actions"><button id="event-save" class="button" type="submit">Add event</button><button id="event-cancel-edit" class="p13-secondary" type="button" hidden>Cancel edit</button></div>
+            </form>
+        </section>
+        <p id="event-sign-in" class="p13-signed-out" hidden>Sign in with an administrator account to manage events. <a href="login.html">Sign in</a></p>
 
         <!-- Practical 6 — Search / Filter / Sort toolbar -->
         <div class="data-toolbar">
@@ -59,6 +85,17 @@
         </section>
 
         <div id="event-pagination" class="pagination" aria-label="Event pagination"></div>
+
+        <section id="event-audit-panel" class="p13-panel" aria-labelledby="event-audit-heading" hidden>
+            <h2 id="event-audit-heading">Event Audit Log</h2>
+            <p class="p13-intro">Recent event changes saved to the database audit table.</p>
+            <div class="p13-audit-wrap">
+                <table class="p13-audit-table">
+                    <thead><tr><th>Event</th><th>Action</th><th>Administrator</th><th>Time</th></tr></thead>
+                    <tbody id="event-audit-rows"><tr><td colspan="4" class="p13-audit-empty">Loading audit history…</td></tr></tbody>
+                </table>
+            </div>
+        </section>
     </main>
 
     <footer>&copy; 2026 StudentHub</footer>
