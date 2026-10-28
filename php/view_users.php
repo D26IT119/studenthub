@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require __DIR__ . '/auth_session.php';
+auth_require_role('admin');
 $users = [];
 $loadError = false;
 try {

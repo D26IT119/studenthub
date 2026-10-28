@@ -129,7 +129,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.querySelectorAll("form").forEach((form) => {
-        if (form.id === "registration-form" || form.id === "secure-registration-form") return;
+        // Forms with an explicit POST action are real backend flows (login,
+        // registration, logout, etc.). Let the browser submit them to PHP.
+        if (form.id === "registration-form" || form.id === "secure-registration-form"
+            || (form.method.toLowerCase() === "post" && form.hasAttribute("action"))) return;
         form.addEventListener("submit", (event) => {
             event.preventDefault();
             if (!form.checkValidity()) return form.reportValidity();

@@ -3,5 +3,11 @@
 
 Options -Indexes
 
+# Legacy static dashboard links must use the authenticated PHP endpoints.
+RewriteEngine On
+RewriteRule ^pages/login\.html$ pages/login.php [L]
+RewriteRule ^pages/dashboard\.html$ pages/student_dashboard.php [R=302,L]
+RewriteRule ^pages/admin\.html$ pages/admin_dashboard.php [R=302,L]
+
 # Friendly error pages
 ErrorDocument 404 /studenthub/pages/index.html
